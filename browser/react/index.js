@@ -7,7 +7,7 @@ import Album from './components/Album';
 import Artists from './components/Artists';
 import Artist from './components/Artist';
 import Songs from './components/Songs';
-import NewPlaylistContainer from './containers/NewPlayListContainer';
+import NewPlaylistContainer from './containers/NewPlaylistContainer';
 import FilterableArtistsContainer from './containers/FilterableArtistsContainer';
 
 ReactDOM.render(
