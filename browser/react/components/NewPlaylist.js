@@ -7,6 +7,7 @@ return (
   <form className="form-horizontal" onSubmit={props.handleSubmit} >
     <fieldset>
       <legend>New Playlist</legend>
+      {props.disabled ? <div className="alert alert-warning">Please enter a valid name</div> : null}
       <div className="form-group">
         <label className="col-xs-2 control-label">Name</label>
         <div className="col-xs-10">

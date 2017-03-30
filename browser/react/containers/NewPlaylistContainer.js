@@ -1,21 +1,25 @@
 import React from 'react';
 import NewPlaylist from '../components/NewPlaylist';
-class NewPlaylistContainer extends React.Component {
+import axios from 'axios';
 
+
+class NewPlaylistContainer extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            inputValue: ''
+            inputValue: '',
+            disabled: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.disabled = this.disabled.bind(this)
     }
 
     handleChange (evt) {
       const value = evt.target.value;
           this.setState({
-              inputValue: value
-
+              inputValue: value,
+              disabled: this.disabled(value.length)
           });
     }
 
@@ -28,11 +32,16 @@ class NewPlaylistContainer extends React.Component {
       });
     }
 
-    disabled(){
-      if(this.state.inputValue.length > 16 || this.state.inputValue.length < 0){
-        this.setState({return false;})
-        return true;
+    disabled(val){
+      if(val> 16 || val<= 0) return true;
+      else return false;
     }
+
+    axios.post('/api/route/to/post/to', { /** req.body contents go here! */ })
+  .then(res => res.data)
+  .then(result => {
+    console.log(result) // response json from the server!
+  });
 
     render () {
         // const inputValue = this.state.inputValue;
@@ -42,7 +51,7 @@ class NewPlaylistContainer extends React.Component {
               { this.state &&
                 <NewPlaylist handleSubmit= {this.handleSubmit}
                 inputValue={this.state.inputValue} onChange={this.handleChange}
-                disabled={this.disabled} />
+                disabled={this.state.disabled} />
               }
             </div>
         );
